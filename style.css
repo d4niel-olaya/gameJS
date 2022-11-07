@@ -1,0 +1,31 @@
+:root{ 
+  --bg-color:#49be25;
+  --snake:#81D7FE;
+  --board:#96be25;
+}
+
+*{
+  margin: 0px;
+  padding: 0px;
+  outline: none;
+  text-decoration: none;
+
+}
+
+
+
+canvas{
+  border: 1px solid;
+  background-color: var(--board);
+}
+.container{
+  display: flex;
+  padding: 2rem;
+  justify-content: center;
+  background-color:var(--bg-color)
+  
+}
+.container .score{
+  width: 30%;
+  text-align: center;
+}
