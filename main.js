@@ -16,6 +16,7 @@ class Snake{
     this.y = y;
     this.w = w;
     this.h = h;
+    this.dir = 'R'
     this.color = color;
   }
   /**
@@ -23,15 +24,41 @@ class Snake{
    * @param {String} dir Dirección a donde la serpiente se va mover
    * @returns {void}
    */
-  draw(dir){
+  draw(){
     if((this.x+this.w) == this.canvas.width){
       alert('se ha excedido');
       this.ctx.clearRect(0,0,this.canvas.width, this.canvas.height)
     }
-    this.x++
+    switch (this.dir){
+      case 'R':
+        this.h = 20;
+        this.w = 100;
+        this.x++;
+        break;
+      case 'L':
+        this.w = 100;
+        this.h = 20
+        this.x--;
+        break;
+      case 'D':
+        this.h = 100
+        this.w = 20
+        // this.w = this.w - 80
+        // this.w = 20
+        console.log(this.h)
+        // console.log(this.w)
+        this.y++
+        break;
+      case 'U':
+        this.h = 100
+        this.w = 20
+        this.y--
+        break;
+    }
     this.ctx.fillStyle=this.color
     this.ctx.fillRect(this.x, this.y, this.w, this.h);
   }
+
   update = () =>{
     this.ctx.clearRect(this.x,this.y,this.w,this.h);
     this.draw()
@@ -74,6 +101,18 @@ snk.draw();
 appl.draw()
 requestAnimationFrame(snk.update);
 document.addEventListener('keyup', (e) =>{
-  if(e.code == 'ArrowDown'){
+  switch(e.code){
+    case 'ArrowUp':
+      snk.dir = 'U';
+      break;
+    case 'ArrowDown':
+      snk.dir = 'D';
+      break;
+    case 'ArrowLeft':
+      snk.dir = 'L';
+      break;
+    case 'ArrowRight':
+      snk.dir = 'R';
+      break
   }
 })
